@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const errorMessage = document.getElementById('errorMessage');
 
     // URL Google Apps Script configurée
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl4x8XnDDuMqhxqrtUVYWFIiA1u9dwXssClalNiTqRIoEDNhNVsTn3W8lSeAhmH6Ic4w/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeSSX2iM3JH5GxLT9jOsKUrch37KCq-6UqNrTjlsefCRb_VZsyEAgigtAq_Mr5HzXDgQ/exec';
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
