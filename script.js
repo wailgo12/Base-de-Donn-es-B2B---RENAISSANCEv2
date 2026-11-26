@@ -15,19 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
 
-    // =========== À REMPLACER PAR VOTRE URL GOOGLE SCRIPT ===========
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzefQQ8ys2mZqz7DSCdwWiksITOhcRGhDznw-62SBkDvG3SYF8sOxr3II8M6Trwdh_9/exec'; 
-    // ===============================================================
+    // URL Google Apps Script configurée
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzefQQ8ys2mZqz7DSCdwWiksITOhcRGhDznw-62SBkDvG3SYF8sOxr3II8M6Trwdh_9/exec';
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        if(SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzefQQ8ys2mZqz7DSCdwWiksITOhcRGhDznw-62SBkDvG3SYF8sOxr3II8M6Trwdh_9/exec') {
-            alert("Erreur de configuration : Veuillez insérer l'URL de votre script Google dans le fichier script.js.");
-            return;
-        }
-
-        // Sécurité
+        // Sécurité anti-double clic
         submitBtn.disabled = true;
         submitBtn.textContent = 'TRANSMISSION EN COURS...';
         errorMessage.style.display = 'none';
@@ -36,9 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch(SCRIPT_URL, {
             method: 'POST',
+            mode: 'no-cors',
             body: formData
         })
-        .then(response => {
+        .then(() => {
             form.style.display = 'none';
             successMessage.style.display = 'block';
             window.scrollTo({ top: document.querySelector('.form-container').offsetTop - 20, behavior: 'smooth' });
