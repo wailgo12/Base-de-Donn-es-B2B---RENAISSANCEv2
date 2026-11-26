@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // 1. Capture des paramètres UTM (depuis Outlook)
     const urlParams = new URLSearchParams(window.location.search);
