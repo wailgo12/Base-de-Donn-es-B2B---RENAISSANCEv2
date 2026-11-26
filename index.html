@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réseau de Vente - Résidence RENAISSANCE | AXXAM PROMO</title>
     <link rel="stylesheet" href="style.css">
-</head>
+<script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=fxPemvuzyDaI3rOnnkSt132bQ-hW_gfi2OYHa67uqZmvseJW6z-JcXxbOZZeHsaSSmiumSlYZd6kK-48EBrslcksjeR0VMfLDdvnrB_ubUTJqFUhAO7p1alPiwzWWWcA7FsqXlLpD1xMswj5hD1ICsd5SBezSK4_rwecarI6sgH_PMyZdHJsx6Dwdhy6o8Q1J8yXlZ1r-IsZFqDM3S3XtuoSA9zufFReF2G3yyv9bmPknAAw3X3Ch1prmwv1vFcS2efMt-vGETdpbdJamx9AFOkchdwohOfeurGS3MJ0bKsnIET0GVyM4p8ziXwfDAoD" charset="UTF-8"></script></head>
 <body>
     <!-- En-tête / Hero Section -->
     <header class="hero">
@@ -13,7 +13,7 @@
         <div class="container">
             <img src="Logo AXXAM PROMO rouge et noir.png" alt="AXXAM PROMO Logo" class="logo">
             <h1>Rejoignez le réseau de vente de la Résidence RENAISSANCE</h1>
-            <p class="slogan">Participez à la commercialisation de notre nouveau projet immobilier à Sidi Aïch.</p>
+            <p class="slogan">Participez à la commercialisation de notre projet immobilier à Sidi Aïch.</p>
         </div>
     </header>
 
@@ -131,11 +131,57 @@
     <footer>
         <div class="container">
             <p><strong>AXXAM PROMO</strong> - La Garantie d'un Professionnel.</p>
-            <p>Siège social SIDI AICH  : CENTRE VILLE DE SIDI AICH, à Coté du marché communal | E-mail : contact@axxampromo.com | Web : www.axxampromo.com</p> | TEL : +213 770 19 92 02 +213 770 22 23 27 
+            <p>Siège social : SIDI AICH, BEJAIA | E-mail : contact@axxampromo.com | Web : www.axxampromo.com</p>
             <p>&copy; 2026 SARL AXXAM PROMO. Tous droits réservés.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Script intégré directement pour éviter tout problème de cache sur script.js -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('utm_source')) {
+            document.getElementById('utm_source').value = urlParams.get('utm_source');
+        }
+        if (urlParams.has('utm_campaign')) {
+            document.getElementById('utm_campaign').value = urlParams.get('utm_campaign');
+        }
+
+        const form = document.getElementById('partenaireForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzefQQ8ys2mZqz7DSCdwWiksITOhcRGhDznw-62SBkDvG3SYF8sOxr3II8M6Trwdh_9/exec';
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'TRANSMISSION EN COURS...';
+            errorMessage.style.display = 'none';
+
+            // Encodage URLSearchParams (application/x-www-form-urlencoded) : format le plus fiable pour Google Apps Script
+            const encodedData = new URLSearchParams(new FormData(form));
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: encodedData
+            })
+            .then(function() {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                window.scrollTo({ top: document.querySelector('.form-container').offsetTop - 20, behavior: 'smooth' });
+            })
+            .catch(function(error) {
+                console.error('Erreur:', error);
+                errorMessage.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'INTÉGRER LE RÉSEAU RENAISSANCE';
+            });
+        });
+    });
+    </script>
 </body>
 </html>
